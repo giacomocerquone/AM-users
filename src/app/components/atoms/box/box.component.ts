@@ -9,6 +9,7 @@ import { Player } from 'src/app/models/Player';
 export class BoxComponent implements OnInit {
   @Input() row: number = 0;
   @Input() col: number = 0;
+  @Input() matrix: Array<Array<string>> = [[], [], []];
   @Output() boxClicked = new EventEmitter<{ row: number; col: number }>();
 
   constructor() {}

@@ -23,8 +23,6 @@ export class AppComponent {
     if (!this.matrix[event.row][event.col]) {
       this.matrix[event.row][event.col] = this.currPlayer;
       this.switchCurrPlayer();
-      console.log(this.matrix);
-      console.log(this.currPlayer);
     } else {
       alert("Non puoi assegnare nuovamente una casella")
     }
