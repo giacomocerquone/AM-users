@@ -7,16 +7,9 @@ import { BoardComponent } from './components/atoms/board/board.component';
 import { BoxComponent } from './components/atoms/box/box.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BoardComponent,
-    BoxComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent, BoardComponent, BoxComponent],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
