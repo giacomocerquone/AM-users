@@ -1,11 +1,11 @@
 <div class="board">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
+  <ng-container *ngFor="let rows of matrix; let rowI = index">
+    <ng-container *ngFor="let box of rows; let colI = index">
+      <app-box
+        [row]="rowI"
+        [col]="colI"
+        (boxClicked)="boxClicked($event)"
+      ></app-box>
+    </ng-container>
+  </ng-container>
 </div>
