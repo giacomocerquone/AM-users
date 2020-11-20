@@ -1,0 +1,22 @@
+app-board {
+  display: flex;
+}
+
+.board {
+  width: 450px;
+  height: 450px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin: auto;
+  border: 15px solid #cecece;
+  border-radius: 10px;
+}
+
+.board > span {
+  display: block;
+  border: 20px solid #cecece;
+  margin: 0;
+}
