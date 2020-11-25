@@ -1,18 +1,35 @@
-<form [formGroup]="loginForm">
-  <mat-form-field appearance="outline">
-    <mat-label>Username</mat-label>
-    <input formControlName="username" matInput placeholder="Il tuo username" />
-    <mat-hint>La tua mail</mat-hint>
-    <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
-      Per favore inserisci un username
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Password</mat-label>
-    <input formControlName="password" matInput placeholder="Il tuo password" />
-    <mat-hint>La tua password</mat-hint>
-    <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-      Per favore inserisci una password
-    </mat-error>
-  </mat-form-field>
-</form>
+<h1 style="text-align: center">Login</h1>
+
+<section class="login-page">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input
+        formControlName="username"
+        matInput
+        placeholder="Il tuo username"
+      />
+      <mat-hint>La tua mail</mat-hint>
+      <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+        Per favore inserisci un username
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        placeholder="Il tuo password"
+      />
+      <mat-hint>La tua password</mat-hint>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+        Per favore inserisci una password
+      </mat-error>
+    </mat-form-field>
+
+    <div style="margin: 10px 0">
+      <button mat-raised-button type="submit" color="primary">Login</button>
+      <button mat-button routerLink="/signup" color="primary">Register</button>
+    </div>
+  </form>
+</section>

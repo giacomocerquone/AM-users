@@ -16,5 +16,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  onSubmit(loginForm: FormGroup) {
+  }
+
   ngOnInit(): void {}
 }

@@ -1,0 +1,11 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-form-field {
+  display: block;
+  width: 100%;
+  min-width: 450px;
+}
