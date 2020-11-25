@@ -1,1 +1,18 @@
-<p>login works!</p>
+<form [formGroup]="loginForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Username</mat-label>
+    <input formControlName="username" matInput placeholder="Il tuo username" />
+    <mat-hint>La tua mail</mat-hint>
+    <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+      Per favore inserisci un username
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input formControlName="password" matInput placeholder="Il tuo password" />
+    <mat-hint>La tua password</mat-hint>
+    <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+      Per favore inserisci una password
+    </mat-error>
+  </mat-form-field>
+</form>
