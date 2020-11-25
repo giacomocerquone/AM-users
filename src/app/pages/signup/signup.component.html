@@ -1,1 +1,73 @@
-<p>signup works!</p>
+<h1 style="text-align: center">Signup</h1>
+
+<section class="signup-page">
+  <form #signupForm="ngForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input
+        required
+        matInput
+        name="username"
+        [(ngModel)]="signupData.username"
+        placeholder="Il tuo username"
+      />
+      <mat-hint>La tua mail</mat-hint>
+      <mat-error *ngIf="signupForm.controls['username']?.errors?.required">
+        Per favore inserisci un username
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        required
+        minlength="4"
+        matInput
+        name="password"
+        placeholder="La tua password"
+        required
+        [(ngModel)]="signupData.password"
+      />
+      <mat-hint>La tua password</mat-hint>
+      <mat-error *ngIf="signupForm.controls['password']?.errors?.required">
+        Per favore inserisci una password
+      </mat-error>
+    </mat-form-field>
+   
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input
+        required
+        matInput
+        name="firstName"
+        placeholder="Il tuo nome"
+        required
+        [(ngModel)]="signupData.firstName"
+      />
+      <mat-hint>Il tuo nome</mat-hint>
+      <mat-error *ngIf="signupForm.controls['firstName']?.errors?.required">
+        Per favore inserisci il tuo nome
+      </mat-error>
+    </mat-form-field>
+   
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        required
+        matInput
+        name="lastName"
+        placeholder="Il tuo cognome"
+        required
+        [(ngModel)]="signupData.lastName"
+      />
+      <mat-hint>Il tuo cognome</mat-hint>
+      <mat-error *ngIf="signupForm.controls['lastName']?.errors?.required">
+        Per favore inserisci il tuo cognome
+      </mat-error>
+    </mat-form-field>
+
+    <div style="margin: 10px 0">
+      <button mat-raised-button type="submit" color="primary">Register</button>
+      <button mat-button routerLink="/login" color="primary">Login</button>
+    </div>
+  </form>
+</section>
