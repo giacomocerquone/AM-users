@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
 
 type signupDataType = {
   firstName: string;
@@ -20,7 +21,16 @@ export class SignupComponent implements OnInit {
     password: '',
   };
 
-  constructor() {}
+  constructor(private uS: UsersService) {}
+
+  onSubmit() {
+    this.uS.signup(this.signupData).subscribe(
+      (val) => {
+        console.log(val);
+      },
+      (err) => console.log(err)
+    );
+  }
 
   ngOnInit(): void {}
 }

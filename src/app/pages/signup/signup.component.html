@@ -1,7 +1,7 @@
 <h1 style="text-align: center">Signup</h1>
 
 <section class="signup-page">
-  <form #signupForm="ngForm">
+  <form #signupForm="ngForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
       <mat-label>Username</mat-label>
       <input
@@ -32,7 +32,7 @@
         Per favore inserisci una password
       </mat-error>
     </mat-form-field>
-   
+
     <mat-form-field appearance="outline">
       <mat-label>Nome</mat-label>
       <input
@@ -48,7 +48,7 @@
         Per favore inserisci il tuo nome
       </mat-error>
     </mat-form-field>
-   
+
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
       <input
