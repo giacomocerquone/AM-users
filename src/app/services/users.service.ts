@@ -47,5 +47,6 @@ export class UsersService {
 
   logout(): void {
     this.loggedInUser = undefined;
+    this.router.navigate(['/login']);
   }
 }
