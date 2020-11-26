@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { EMPTY, Observable, of, throwError } from 'rxjs';
 import { User } from '../models/User';
 import { find, map, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   loggedInUser?: User;
 
@@ -20,6 +21,7 @@ export class UsersService {
         );
         if (user) {
           this.loggedInUser = user;
+          this.router.navigate(['dashboard']);
           return user;
         } else {
           return new Error('No user found');
@@ -37,7 +39,8 @@ export class UsersService {
     return this.http.post<void>('http://localhost:3000/users', data).pipe(
       tap((res) => {
         console.log(res);
-        this.loggedInUser = data;
+        this.loggedInUser = { ...data, id: Date.now() };
+        this.router.navigate(['dashboard']);
       })
     );
   }
