@@ -9,9 +9,14 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UsersService {
-  constructor(private http: HttpClient, private router: Router) {}
-
   loggedInUser?: User;
+
+  constructor(private http: HttpClient, private router: Router) {
+    if (localStorage.getItem('user')) {
+      const user = localStorage.getItem('user') || '';
+      this.loggedInUser = JSON.parse(user);
+    }
+  }
 
   login(username: string, password: string): Observable<User | Error> {
     return this.http.get<User[]>('http://localhost:3000/users').pipe(
@@ -22,6 +27,7 @@ export class UsersService {
         if (user) {
           this.loggedInUser = user;
           this.router.navigate(['dashboard']);
+          localStorage.setItem('user', JSON.stringify(user));
           return user;
         } else {
           return new Error('No user found');
@@ -40,12 +46,14 @@ export class UsersService {
       tap((res) => {
         console.log(res);
         this.loggedInUser = { ...data, id: Date.now() };
-        this.router.navigate(['dashboard']);
+        alert('La registrazione è avvenuta con successo, fai login!');
+        this.router.navigate(['login']);
       })
     );
   }
 
   logout(): void {
+    localStorage.removeItem('user');
     this.loggedInUser = undefined;
     this.router.navigate(['/login']);
   }

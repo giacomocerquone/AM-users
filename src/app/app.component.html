@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <span>Users management</span>
+  <a routerLink="/" style="margin-right: auto">Users management</a>
   <ng-container *ngIf="uS.loggedInUser">
     <button mat-raised-button (click)="uS.logout()">Logout</button>
   </ng-container>
