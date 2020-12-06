@@ -7,13 +7,13 @@ import {
   Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UsersService } from '../services/users.service';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NoAuthGuard implements CanActivate {
-  constructor(private uS: UsersService, private router: Router) {}
+  constructor(private uS: UserService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,

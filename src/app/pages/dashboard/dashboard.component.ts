@@ -1,29 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { concatMap, tap } from 'rxjs/operators';
 import { User } from 'src/app/models/User';
-
-const Users: User[] = [
-  {
-    id: 1,
-    username: 'Hydrogen',
-    firstName: 'Alberto',
-    lastName: 'Rossi',
-    password: '',
-  },
-  {
-    id: 2,
-    username: 'Lastaa',
-    firstName: 'Giovanni',
-    lastName: 'Rossi',
-    password: '',
-  },
-  {
-    id: 3,
-    username: 'Hisengard',
-    firstName: 'Gianluca',
-    lastName: 'Rossi',
-    password: '',
-  },
-];
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,20 +9,32 @@ const Users: User[] = [
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  users: User[] = [];
 
-  displayedColumns: string[] = [
-    'id',
-    'username',
-    'firstName',
-    'lastName',
-    'delete',
-  ];
-  dataSource = Users;
+  myColumns: string[] = ['id', 'firstName', 'lastName', 'delete'];
 
-  ngOnInit(): void {}
+  constructor(private us: UserService) {}
 
-  deleteUser(element: User): void {
-    alert('asd');
+  ngOnInit(): void {
+    this.us.getUsers().subscribe((users) => {
+      this.users = users;
+    });
+  }
+
+  deleteUser(element: User) {
+    this.us
+      .deleteUser(element)
+      .pipe(
+        tap((element: User) => {
+          alert(`Utente ${element.username} cancellato`);
+        }),
+        concatMap((element: User) => {
+          return this.us.getUsers();
+        }),
+        tap((users: User[]) => {
+          this.users = users;
+        })
+      )
+      .subscribe();
   }
 }
